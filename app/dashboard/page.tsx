@@ -9,6 +9,9 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { getLinksByUserId } from "@/data/links";
+import { CreateLinkDialog } from "./create-link-dialog";
+import { DeleteLinkDialog } from "./delete-link-dialog";
+import { EditLinkDialog } from "./edit-link-dialog";
 
 async function Dashboard() {
     const { userId } = await auth();
@@ -18,7 +21,10 @@ async function Dashboard() {
 
     return (
         <main className="mx-auto w-full max-w-3xl space-y-6 p-6">
-            <h1 className="text-2xl font-semibold">Your Links</h1>
+            <div className="flex items-center justify-between">
+                <h1 className="text-2xl font-semibold">Your Links</h1>
+                <CreateLinkDialog />
+            </div>
             {userLinks.length === 0 ? (
                 <p className="text-muted-foreground">You haven&apos;t created any links yet.</p>
             ) : (
@@ -30,8 +36,18 @@ async function Dashboard() {
                                     <CardTitle>/{link.shortCode}</CardTitle>
                                     <CardDescription className="break-all">{link.url}</CardDescription>
                                 </CardHeader>
-                                <CardContent className="text-xs text-muted-foreground">
-                                    Created {link.createdAt.toLocaleDateString()}
+                                <CardContent className="flex items-center justify-between gap-2">
+                                    <span className="text-xs text-muted-foreground">
+                                        Created {link.createdAt.toLocaleDateString()}
+                                    </span>
+                                    <div className="flex gap-2">
+                                        <EditLinkDialog
+                                            id={link.id}
+                                            initialUrl={link.url}
+                                            initialShortCode={link.shortCode}
+                                        />
+                                        <DeleteLinkDialog id={link.id} shortCode={link.shortCode} />
+                                    </div>
                                 </CardContent>
                             </Card>
                         </li>
