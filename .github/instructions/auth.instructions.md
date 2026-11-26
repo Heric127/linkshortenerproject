@@ -1,3 +1,9 @@
+---
+description: Read this before implementing or modyfing authentication in the project.
+
+---
+
+
 # Authentication
 
 All authentication in this app is handled by **Clerk** (`@clerk/nextjs`). No other auth method, library, or custom session/token/password logic may be introduced.
