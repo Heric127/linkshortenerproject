@@ -1,5 +1,5 @@
 ---
-description: Read this before implementing or modyfing authentication in the project.
+description: Read this before implementing or modifying authentication in the project.
 
 ---
 

@@ -1,3 +1,9 @@
+---
+description: Read this before implementing or modifying UI components in the project.
+
+---
+
+
 # UI Components
 
 All UI in this app is built with **shadcn/ui**. No custom UI components may be created.
